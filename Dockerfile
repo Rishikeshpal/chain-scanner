@@ -9,7 +9,6 @@ COPY package*.json ./
 COPY tsconfig.json ./
 COPY src ./src
 
-
 # Install dependencies
 RUN npm ci
 
@@ -17,9 +16,10 @@ RUN npm ci
 COPY . .
 
 # Build TypeScript files
-
 RUN npm run build
 
+# Entrypoint
+ENTRYPOINT ["node", "dist/main"]
 
-# Command to run the application
-CMD ["node", "dist/main]
+# Default arguments
+CMD ["main", "foundation"]
